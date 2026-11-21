@@ -39,8 +39,8 @@ jobs:
           New-Item -ItemType Directory -Force -Path "out\$pkgName" | Out-Null
           Copy-Item src\bin\x64\Release\BetterWPP.dll "out\$pkgName\"
           Copy-Item src\bin\x64\Release\BetterWPP.pdb "out\$pkgName\" -ErrorAction SilentlyContinue
-          # NetOffice 依赖随包输出，一并打包，目标机免装 PIA
-          Get-ChildItem src\bin\x64\Release\NetOffice*.dll | Copy-Item -Destination "out\$pkgName\"
+          # 所有依赖 DLL 一并打包（NetOffice 核心 + Office/PowerPoint 包装 + VBIDE/stdole），目标机免装 PIA
+          Get-ChildItem src\bin\x64\Release\*.dll | Copy-Item -Destination "out\$pkgName\"
           Copy-Item src\register.cmd "out\$pkgName\"
 
           # 打 zip 便于归档下载；artifact 只上传这一个 zip，避免双层压缩
