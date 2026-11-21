@@ -17,3 +17,6 @@ sign/
 
 # Logs
 *.log
+
+# Temp inspection downloads
+.tmp-nuget/
