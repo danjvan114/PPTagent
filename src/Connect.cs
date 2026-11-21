@@ -1,7 +1,6 @@
 using System;
 using System.Runtime.InteropServices;
-using Extensibility;
-using NetOffice.PowerPointApi;
+using NetOffice.PowerPointApi.Tools;
 
 namespace BetterWPP
 {
@@ -9,27 +8,24 @@ namespace BetterWPP
     [ComVisible(true)]
     [Guid("11111111-1111-1111-1111-111111111111")]
     [ProgId("BetterWPP.Connect")]
-    [ClassInterface(ClassInterfaceType.None)]
-    public class Connect : IDTExtensibility2
+    [COMAddin("BetterWPP", "BetterWPP PowerPoint COM add-in", LoadBehavior.LoadAtStartup)]
+    public class Connect : COMAddin
     {
-        private Application _app;
+        // 基类已实现 IDTExtensibility2；订阅事件在构造函数里挂接
+        public Connect()
+        {
+            OnConnection += Connect_OnConnection;
+            OnDisconnection += Connect_OnDisconnection;
+        }
 
-        public void OnConnection(object application, ext_ConnectMode connectMode,
+        private void Connect_OnConnection(object application, Extensibility.ext_ConnectMode connectMode,
             object addInInst, ref Array custom)
         {
-            _app = Factory.GetApplication<Application>(application);
+            // this.Application 为 NetOffice 包装的 PowerPoint.Application，可在此挂事件、取 Ribbon
         }
 
-        public void OnDisconnection(ext_DisconnectMode removeMode, ref Array custom)
+        private void Connect_OnDisconnection(Extensibility.ext_DisconnectMode removeMode, ref Array custom)
         {
-            _app?.Dispose();
-            _app = null;
         }
-
-        public void OnAddInsUpdate(ref Array custom) { }
-
-        public void OnStartupComplete(ref Array custom) { }
-
-        public void OnBeginShutdown(ref Array custom) { }
     }
 }
