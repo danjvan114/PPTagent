@@ -37,7 +37,7 @@ namespace BetterWPP
         }
 
         // 兜底：若 CustomUI 特性未取到内嵌资源，重写此方法返回 Ribbon XML
-        protected override string GetCustomUI(string ribbonID)
+        public override string GetCustomUI(string ribbonID)
         {
             var asm = Assembly.GetExecutingAssembly();
             foreach (var name in asm.GetManifestResourceNames())
