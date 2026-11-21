@@ -127,12 +127,21 @@ namespace BetterWPP.Server
 
         private byte[] Status()
         {
+            var asm = System.Reflection.Assembly.GetExecutingAssembly();
+            var an = asm.GetName();
+            string asmLoc = asm.Location;
+            string productVer = "";
+            try { productVer = System.Diagnostics.FileVersionInfo.GetVersionInfo(asm.Location).ProductVersion; } catch { }
             var f = new Dictionary<string, string>
             {
                 { "running", Json.Bool(_server.IsRunning) },
                 { "port", _server.Port.ToString() },
                 { "mode", Json.Str(_server.Mode.ToString()) },
-                { "urls", Json.Str(string.Join(",", _server.GetUrls())) }
+                { "urls", Json.Str(string.Join(",", _server.GetUrls())) },
+                { "asmName", Json.Str(an.Name) },
+                { "asmVersion", Json.Str(an.Version.ToString()) },
+                { "asmProduct", Json.Str(productVer) },
+                { "asmLocation", Json.Str(asmLoc) }
             };
             return Utf8(Json.Obj(f));
         }
