@@ -11,7 +11,7 @@ namespace BetterWPP
     [Guid("11111111-1111-1111-1111-111111111111")]
     [ProgId("BetterWPP.Connect")]
     [COMAddin("BetterWPP", "BetterWPP PowerPoint COM add-in", LoadBehavior.LoadAtStartup)]
-    [CustomUI("", "BetterWPP.src.RibbonUI.xml")]
+    [CustomUI("RibbonUI.xml", true)]
     public class Connect : COMAddin
     {
         public Connect()
