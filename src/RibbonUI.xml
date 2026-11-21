@@ -2,12 +2,27 @@
   <ribbon>
     <tabs>
       <tab id="BetterWPPTab" label="BetterWPP">
-        <group id="BetterWPPGroup" label="测试组">
-          <button id="HelloButton"
-                  label="点我打招呼"
+        <group id="ServiceGroup" label="本地服务">
+          <button id="StartBtn"
+                  label="启动服务"
                   size="large"
-                  onAction="OnHelloButton"
-                  screentip="BetterWPP 测试按钮" />
+                  onAction="OnStartService"
+                  screentip="启动本机 HTTP 服务（随机端口）" />
+          <button id="StopBtn"
+                  label="停止服务"
+                  size="large"
+                  onAction="OnStopService"
+                  screentip="停止本机 HTTP 服务" />
+          <button id="CodeBtn"
+                  label="连接码"
+                  size="large"
+                  onAction="OnShowCode"
+                  screentip="查看服务地址" />
+          <button id="NetBtn"
+                  label="网络设置"
+                  size="large"
+                  onAction="OnNetworkSetting"
+                  screentip="绑定本机或局域网" />
         </group>
       </tab>
     </tabs>
