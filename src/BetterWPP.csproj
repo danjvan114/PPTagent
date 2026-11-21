@@ -12,7 +12,9 @@
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
     <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
-    <Version>0.1.0</Version>
+    <!-- 版本必须为整数，用于 CI 归档命名 PPTAgent+{version}+{YYMMDD}+{HHMMSS} -->
+    <Version>110</Version>
+    <FileVersion>110.0.0.0</FileVersion>
     <!-- 强名称签名：需要时把 pfx 放到 src\sign\ 并打开下一行 -->
     <SignAssembly>false</SignAssembly>
   </PropertyGroup>
@@ -22,6 +24,11 @@
     <PackageReference Include="NetOfficeFw.PowerPoint" Version="1.9.12" />
     <!-- IDTExtensibility2 / ext_ConnectMode / ext_DisconnectMode 所在互操作程序集（VS SDK NuGet，CI 无需本机装 Office/VS） -->
     <PackageReference Include="Microsoft.VisualStudio.Interop" Version="17.14.40260" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Ribbon XML 作为内嵌资源，供 CustomUI 特性 / GetCustomUI 读取 -->
+    <EmbeddedResource Include="RibbonUI.xml" />
   </ItemGroup>
 
 </Project>

@@ -1,0 +1,15 @@
+<customUI xmlns="http://schemas.microsoft.com/office/2006/01/customui">
+  <ribbon>
+    <tabs>
+      <tab id="BetterWPPTab" label="BetterWPP">
+        <group id="BetterWPPGroup" label="测试组">
+          <button id="HelloButton"
+                  label="点我打招呼"
+                  size="large"
+                  onAction="OnHelloButton"
+                  screentip="BetterWPP 测试按钮" />
+        </group>
+      </tab>
+    </tabs>
+  </ribbon>
+</customUI>

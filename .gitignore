@@ -22,3 +22,8 @@ sign/
 .tmp-nuget/
 .tmp-nuget2/
 .tmp-nuget3/
+.tmp-ref/
+
+# Local build archive (CI artifact downloaded here, not committed)
+build/*.zip
+build/PPTagent*/

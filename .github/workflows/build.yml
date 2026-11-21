@@ -24,19 +24,33 @@ jobs:
       - name: Build Release
         run: msbuild src\BetterWPP.csproj -t:rebuild -p:Configuration=Release -p:Platform=x64 -verbosity:minimal
 
-      - name: Stage output
+      - name: Stage and name package
         shell: pwsh
         run: |
-          New-Item -ItemType Directory -Force -Path out | Out-Null
-          Copy-Item src\bin\x64\Release\BetterWPP.dll out\
-          Copy-Item src\bin\x64\Release\BetterWPP.pdb out\ -ErrorAction SilentlyContinue
+          $version = [int]((Select-Xml -Path src\BetterWPP.csproj -XPath "//Version").Node.InnerText)
+          $now = [datetime]::Now
+          $date = $now.ToString("yyMMdd")
+          $time = $now.ToString("HHmmss")
+          # 命名：PPTagent+{version整数}+{YYMMDD}+{HHMMSS}
+          $pkgName = "PPTagent+$version+$date+$time"
+          Write-Host "Package: $pkgName"
+          "PKG_NAME=$pkgName" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8
+
+          New-Item -ItemType Directory -Force -Path "out\$pkgName" | Out-Null
+          Copy-Item src\bin\x64\Release\BetterWPP.dll "out\$pkgName\"
+          Copy-Item src\bin\x64\Release\BetterWPP.pdb "out\$pkgName\" -ErrorAction SilentlyContinue
           # NetOffice 依赖随包输出，一并打包，目标机免装 PIA
-          Get-ChildItem src\bin\x64\Release\NetOffice*.dll | Copy-Item -Destination out\
-          Copy-Item src\register.cmd out\
+          Get-ChildItem src\bin\x64\Release\NetOffice*.dll | Copy-Item -Destination "out\$pkgName\"
+          Copy-Item src\register.cmd "out\$pkgName\"
+
+          # 打 zip 便于归档下载
+          Compress-Archive -Path "out\$pkgName\*" -DestinationPath "out\$pkgName.zip" -Force
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: betterwpp-addin
-          path: out\
+          name: ${{ env.PKG_NAME }}
+          path: |
+            out/${{ env.PKG_NAME }}/
+            out/${{ env.PKG_NAME }}.zip
           retention-days: 30
