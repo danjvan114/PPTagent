@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>NetOfficeFw.Core</id>
+    <version>1.9.12</version>
+    <authors>Sebastian Lange, Jozef Izso</authors>
+    <license type="expression">MIT</license>
+    <licenseUrl>https://licenses.nuget.org/MIT</licenseUrl>
+    <icon>icon.png</icon>
+    <readme>README.md</readme>
+    <iconUrl>https://raw.githubusercontent.com/NetOfficeFw/NetOffice-Assets/master/NetOfficeLogo_200x200.png</iconUrl>
+    <description>NetOffice core library</description>
+    <copyright>Copyright © 2011-2018 Sebastian Lange, © 2015-2026 Jozef Izso, © 2026 Cisco Systems, Inc. All rights reserved.</copyright>
+    <tags>netoffice netofficefw NetOffice.Core office excel word outlook powerpoint access interop wrapper vsto addin</tags>
+    <repository type="git" url="https://github.com/NetOfficeFw/NetOffice" branch="v1.9.12" commit="7c9f5a59a4bd1e36a2950aab9ac711531a560be9" />
+    <dependencies>
+      <group targetFramework=".NETFramework4.6.2" />
+    </dependencies>
+    <frameworkAssemblies>
+      <frameworkAssembly assemblyName="System.Windows.Forms" targetFramework=".NETFramework4.6.2" />
+    </frameworkAssemblies>
+  </metadata>
+</package>

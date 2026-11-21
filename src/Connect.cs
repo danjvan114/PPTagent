@@ -1,5 +1,6 @@
 using System;
 using System.Runtime.InteropServices;
+using NetOffice.Attributes;
 using NetOffice.PowerPointApi.Tools;
 
 namespace BetterWPP
@@ -11,7 +12,6 @@ namespace BetterWPP
     [COMAddin("BetterWPP", "BetterWPP PowerPoint COM add-in", LoadBehavior.LoadAtStartup)]
     public class Connect : COMAddin
     {
-        // 基类已实现 IDTExtensibility2；订阅事件在构造函数里挂接
         public Connect()
         {
             OnConnection += Connect_OnConnection;
