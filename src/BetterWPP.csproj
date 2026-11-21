@@ -20,6 +20,8 @@
   <ItemGroup>
     <!-- NetOffice：NuGet 拉取，CI/本机都不依赖本机安装的 PowerPoint PIA；运行时才需本机有 Office -->
     <PackageReference Include="NetOfficeFw.PowerPoint" Version="1.9.12" />
+    <!-- IDTExtensibility2 / ext_ConnectMode / ext_DisconnectMode 所在互操作程序集（VS SDK NuGet，CI 无需本机装 Office/VS） -->
+    <PackageReference Include="Microsoft.VisualStudio.Interop" Version="17.14.40260" />
   </ItemGroup>
 
 </Project>
