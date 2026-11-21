@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <!-- COM 加载项只能用 .NET Framework，禁止 .NET 8/9 -->
+    <TargetFramework>net48</TargetFramework>
+    <AssemblyName>BetterWPP</AssemblyName>
+    <RootNamespace>BetterWPP</RootNamespace>
+    <LangVersion>7.3</LangVersion>
+    <PlatformTarget>x64</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
+    <DebugType>portable</DebugType>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+    <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+    <Version>0.1.0</Version>
+    <!-- 强名称签名：需要时把 pfx 放到 src\sign\ 并打开下一行 -->
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- NetOffice：NuGet 拉取，CI/本机都不依赖本机安装的 PowerPoint PIA；运行时才需本机有 Office -->
+    <PackageReference Include="NetOfficeFw.PowerPoint" Version="1.9.12" />
+  </ItemGroup>
+
+</Project>

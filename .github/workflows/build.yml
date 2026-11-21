@@ -1,0 +1,42 @@
+name: build-wpp-addin
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    # COM 加载项只能在 Windows runner 上用 MSBuild 编译
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Add MSBuild to PATH
+        uses: microsoft/setup-msbuild@v3
+
+      - name: Restore NuGet packages
+        run: msbuild src\BetterWPP.csproj -t:restore -p:Configuration=Release -p:Platform=x64
+
+      - name: Build Release
+        run: msbuild src\BetterWPP.csproj -t:rebuild -p:Configuration=Release -p:Platform=x64 -verbosity:minimal
+
+      - name: Stage output
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Force -Path out | Out-Null
+          Copy-Item src\bin\x64\Release\BetterWPP.dll out\
+          Copy-Item src\bin\x64\Release\BetterWPP.pdb out\ -ErrorAction SilentlyContinue
+          # NetOffice 依赖随包输出，一并打包，目标机免装 PIA
+          Get-ChildItem src\bin\x64\Release\NetOffice*.dll | Copy-Item -Destination out\
+          Copy-Item src\register.cmd out\
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: betterwpp-addin
+          path: out\
+          retention-days: 30

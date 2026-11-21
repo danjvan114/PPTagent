@@ -1,0 +1,19 @@
+# Build output
+bin/
+obj/
+out/
+*.user
+*.suo
+.vs/
+
+# Packages
+*.nupkg
+packages/
+
+# Signing secrets
+*.pfx
+*.snk
+sign/
+
+# Logs
+*.log
