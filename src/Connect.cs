@@ -1,6 +1,6 @@
 using System;
 using System.Runtime.InteropServices;
-using NetOffice.Attributes;
+using NetOffice.Tools;
 using NetOffice.PowerPointApi.Tools;
 
 namespace BetterWPP

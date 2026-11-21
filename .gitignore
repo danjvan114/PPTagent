@@ -20,3 +20,4 @@ sign/
 
 # Temp inspection downloads
 .tmp-nuget/
+.tmp-nuget2/
