@@ -204,7 +204,7 @@ namespace BetterWPP.Server
                         try { trigger = (MsoAnimTriggerType)Enum.Parse(typeof(MsoAnimTriggerType), j["trigger"].ToString(), true); }
                         catch { }
                     }
-                    var ef = main.AddEffect(shape, effect, MsoAnimateByLevel.msoAnimateTextByAllLevels, trigger, main.Count + 1);
+                    var ef = main.AddEffect(shape, effect, MsoAnimateByLevel.msoAnimateTextByAllLevels, trigger);
                     return Ok(new Dictionary<string, string>
                     {
                         { "animationAdded", Json.Bool(true) },
