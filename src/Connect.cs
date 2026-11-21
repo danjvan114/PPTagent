@@ -18,13 +18,13 @@ namespace BetterWPP
             OnDisconnection += Connect_OnDisconnection;
         }
 
-        private void Connect_OnConnection(object application, Extensibility.ext_ConnectMode connectMode,
+        private void Connect_OnConnection(object application, ext_ConnectMode connectMode,
             object addInInst, ref Array custom)
         {
             // this.Application 为 NetOffice 包装的 PowerPoint.Application，可在此挂事件、取 Ribbon
         }
 
-        private void Connect_OnDisconnection(Extensibility.ext_DisconnectMode removeMode, ref Array custom)
+        private void Connect_OnDisconnection(ext_DisconnectMode removeMode, ref Array custom)
         {
         }
     }
