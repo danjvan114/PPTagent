@@ -62,7 +62,7 @@ namespace BetterWPP.Server
             foreach (Slide s in pres.Slides)
             {
                 string title = "";
-                try { if (s.Shapes.HasTitle) title = s.Shapes.Title.TextFrame.TextRange.Text; } catch { }
+                try { if (s.Shapes.HasTitle == MsoTriState.msoTrue) title = s.Shapes.Title.TextFrame.TextRange.Text; } catch { }
                 var f = new Dictionary<string, string>
                 {
                     { "index", s.SlideIndex.ToString() },
@@ -235,7 +235,7 @@ namespace BetterWPP.Server
                 { "index", e.Index.ToString() },
                 { "displayName", Json.Str(e.DisplayName) },
                 { "effectType", Json.Str(e.EffectType.ToString()) },
-                { "exit", Json.Bool(e.Exit) }
+                { "exit", Json.Bool(e.Exit == MsoTriState.msoTrue) }
             };
 
             string target = "null";

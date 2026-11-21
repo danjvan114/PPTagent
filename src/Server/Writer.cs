@@ -192,7 +192,7 @@ namespace BetterWPP.Server
                     int shapeId = ReqInt(j, "shapeId");
                     var shape = FindShapeOnSlide(slide, shapeId);
                     // AddEffect(shape, effectId, level, trigger, index)
-                    MsoAnimEffect effect = MsoAnimEffect.msoAnimAppear;
+                    MsoAnimEffect effect = MsoAnimEffect.msoAnimEffectAppear;
                     if (j.ContainsKey("effectType"))
                     {
                         try { effect = (MsoAnimEffect)Enum.Parse(typeof(MsoAnimEffect), j["effectType"].ToString(), true); }
