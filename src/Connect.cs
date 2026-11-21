@@ -44,8 +44,16 @@ namespace BetterWPP
             {
                 if (name.EndsWith("RibbonUI.xml", StringComparison.OrdinalIgnoreCase))
                 {
-                    using var reader = new System.IO.StreamReader(asm.GetManifestResourceStream(name));
-                    return reader.ReadToEnd();
+                    var stream = asm.GetManifestResourceStream(name);
+                    try
+                    {
+                        var reader = new System.IO.StreamReader(stream);
+                        return reader.ReadToEnd();
+                    }
+                    finally
+                    {
+                        stream.Dispose();
+                    }
                 }
             }
             return base.GetCustomUI(ribbonID);
